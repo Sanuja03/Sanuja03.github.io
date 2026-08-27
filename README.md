@@ -1,16 +1,20 @@
-# React + Vite
+# Sanuja — developer portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A responsive React + Vite portfolio for an IT & Management student. Content lives in `src/data/portfolio.js` so personal details and projects are easy to update.
 
-Currently, two official plugins are available:
+## Local development
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+```bash
+npm install
+npm run dev
+```
 
-## React Compiler
+For the optional contact API, copy `backend/.env.example` to `backend/.env`, fill in the Resend settings, then run `npm install && npm start` inside `backend/`. Set `VITE_API_URL` in the root `.env` when wiring the form to the API.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Production and deployment
 
-## Expanding the ESLint configuration
+`npm run build` creates `dist/`, suitable for GitHub Pages or another static host. Set Vite's `base` to the repository path if deploying to a project page. Deploy `backend/` separately to a Node host such as Render and configure `PORT`, `FRONTEND_ORIGIN`, `CONTACT_TO`, and `RESEND_API_KEY` there.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Personalise
+
+Replace every `[TODO: ...]` value in `src/data/portfolio.js`, update project links/descriptions, and replace the placeholder email and LinkedIn URL before publishing. No secrets belong in the frontend or repository.
