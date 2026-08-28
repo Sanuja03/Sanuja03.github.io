@@ -1,3 +1,67 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap');
+
 @import "tailwindcss";
-:root{font-family:Manrope,sans-serif;color:#22211f;background:#f7f6f2;--bg:#f7f6f2;--surface:#fff;--ink:#22211f;--muted:#77746e;--line:#dfddd6;--accent:#e86a50;--soft:#eeece6;--mono:'DM Mono',monospace} :root[data-theme=dark]{--bg:#171716;--surface:#20201e;--ink:#f1eee7;--muted:#a09d94;--line:#393834;--soft:#292824}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-width:320px;background:var(--bg);color:var(--ink)}button,a{font:inherit}button{cursor:pointer}a{color:inherit;text-decoration:none}
+
+:root {
+  --bg: #f5f6f8;
+  --ink: #191b20;
+  --muted: #686d78;
+  --line: #d6d9e0;
+  --surface: #e9ecf1;
+  --accent: #3148a8;
+  --accent-soft: #dce2ff;
+  --night: #171920;
+}
+
+:root[data-theme='dark'] {
+  --bg: #121419;
+  --ink: #edf0f7;
+  --muted: #9ea5b5;
+  --line: #30343d;
+  --surface: #1c1f27;
+  --accent: #8394ff;
+  --accent-soft: #252e5d;
+  --night: #090a0d;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: Manrope, system-ui, sans-serif;
+}
+
+button,
+a,
+input,
+textarea {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+::selection {
+  background: var(--accent);
+  color: white;
+}
