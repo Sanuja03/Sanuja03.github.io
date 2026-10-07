@@ -34,6 +34,13 @@ jobs:
       - name: Build
         run: npm run build
 
+      - name: Create route entry points
+        run: |
+          for route in skills projects journey contact; do
+            mkdir -p "dist/$route"
+            cp dist/index.html "dist/$route/index.html"
+          done
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
