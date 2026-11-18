@@ -14,6 +14,9 @@ export default function Contact() {
   })
 
   const [status, setStatus] = useState('idle')
+  const apiUrl =
+    import.meta.env.VITE_API_URL?.trim() ||
+    (import.meta.env.DEV ? 'http://localhost:3001' : '')
 
   const submit = async (event) => {
     event.preventDefault()
@@ -26,11 +29,15 @@ export default function Contact() {
       return setStatus('error')
     }
 
+    if (!apiUrl) {
+      return setStatus('unavailable')
+    }
+
     setStatus('sending')
 
     try {
       const response = await fetch(
-        `${import.meta.env.VITE_API_URL || 'http://localhost:3001'}/api/contact`,
+        `${apiUrl.replace(/\/$/, '')}/api/contact`,
         {
           method: 'POST',
           headers: {
@@ -141,6 +148,12 @@ export default function Contact() {
               <p className="form-error">
                 The message could not be sent. Please use the email link
                 instead.
+              </p>
+            )}
+
+            {status === 'unavailable' && (
+              <p className="form-error">
+                The contact form is not configured yet. Please use the email link instead.
               </p>
             )}
 
