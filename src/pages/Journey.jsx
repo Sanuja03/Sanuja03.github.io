@@ -1,87 +1,41 @@
+import { ArrowRight } from 'lucide-react'
 import { journey } from '../data/portfolio'
 import Reveal from '../components/Reveal'
+import AppLink from '../components/AppLink'
 
-const sections = [
-  journey.university,
-  journey.cima,
-  journey.experience,
-  journey.school,
-]
-
-export default function Journey() {
+export default function Journey({ navigate }) {
   return (
-    <main className="inner-page journey-page shell">
-      <Reveal>
-        <p className="eyebrow cobalt">
-          Journey / 03
-        </p>
-
-        <h1 className="page-title">
-          A foundation, <em>still taking shape.</em>
-        </h1>
-
-        <p className="page-lead">
-          Education, professional experience, and the
-          experiences that have shaped how I learn,
-          work, and approach new problems.
-        </p>
+    <main className="page shell">
+      <Reveal className="page-intro">
+        <h1 className="page-title">My journey so far</h1>
+        <p className="page-lead">{journey.intro}</p>
       </Reveal>
 
-      <div className="journey-sections">
-        {sections.map((section) => (
-          <section
-            className="journey-block"
-            key={section.title}
-          >
-            <Reveal>
-              <div className="journey-section-header">
-                <p className="eyebrow cobalt">
-                  {section.eyebrow}
-                </p>
+      {journey.groups.map((group) => (
+        <section className="journey-group" key={group.title}>
+          <Reveal as="h2" className="journey-group-title">{group.title}</Reveal>
 
-                <h2>{section.title}</h2>
+          <ol className="journey-list">
+            {group.entries.map((entry) => (
+              <Reveal as="li" className="journey-entry" key={entry.title}>
+                <p className="journey-period">{entry.period}</p>
+                <div>
+                  <h3>{entry.title}</h3>
+                  <p className="journey-place">{entry.place}</p>
+                  <p className="journey-detail">{entry.detail}</p>
+                </div>
+              </Reveal>
+            ))}
+          </ol>
+        </section>
+      ))}
 
-                <p className="section-intro">
-                  {section.intro}
-                </p>
-              </div>
-            </Reveal>
-
-            <div className="timeline">
-              {section.entries.map((entry, index) => (
-                <Reveal
-                  className="timeline-entry"
-                  key={`${section.title}-${entry.title}`}
-                >
-                  <div className="timeline-meta">
-                    <span className="timeline-date">
-                      {entry.period}
-                    </span>
-
-                    <span className="timeline-number">
-                      {String(index + 1).padStart(2, '0')}
-                    </span>
-                  </div>
-
-                  <div className="timeline-marker" />
-
-                  <div className="timeline-content">
-                    <h3>{entry.title}</h3>
-
-                    <strong>{entry.place}</strong>
-
-                    <p>{entry.detail}</p>
-                  </div>
-                </Reveal>
-              ))}
-            </div>
-          </section>
-        ))}
-      </div>
+      <Reveal className="journey-end">
+        <p>The projects I worked on along the way are where most of the learning happened.</p>
+        <AppLink className="text-link" to="/projects/" navigate={navigate}>
+          See the projects <ArrowRight size={16} />
+        </AppLink>
+      </Reveal>
     </main>
-
-    
   )
-
-  
 }

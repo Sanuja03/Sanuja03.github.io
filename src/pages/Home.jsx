@@ -1,153 +1,82 @@
-import { ArrowDownRight, ArrowUpRight } from 'lucide-react'
-import { projects } from '../data/portfolio'
+import { ArrowRight } from 'lucide-react'
+import { background, projects } from '../data/portfolio'
 import Reveal from '../components/Reveal'
 import ProjectTeaser from '../components/ProjectTeaser'
+import AppLink from '../components/AppLink'
 
 export default function Home({ navigate, profile }) {
   return (
     <main>
       <section className="home-hero shell">
-        <div className="hero-text">
-          <Reveal>
-            <p className="eyebrow cobalt">
-              IT & Management / Software Development
-            </p>
-
-            <h1>
-              Sanuja <em>Nimsith<br />Alphonsus</em>
-            </h1>
-
-            <p className="lead">
-              I’m an IT & Management undergraduate at the University of
-              Moratuwa, building software with a focus on practical systems,
-              thoughtful engineering, and the business problems technology is
-              meant to solve.
-            </p>
-
-            <div className="hero-actions">
-              <button onClick={() => navigate('/projects')}>
-                Explore projects
-                <ArrowDownRight size={18} />
-              </button>
-
-              <button onClick={() => navigate('/contact')}>
-                Get in touch
-                <ArrowUpRight size={17} />
-              </button>
-            </div>
-
-            <div className="hero-social">
-              <a
-                href={profile.github}
-                target="_blank"
-                rel="noreferrer"
-              >
-                GitHub
-              </a>
-
-              <a
-                href={profile.linkedin}
-                target="_blank"
-                rel="noreferrer"
-              >
-                LinkedIn
-              </a>
-            </div>
-          </Reveal>
-        </div>
-
-        <Reveal className="portrait-wrap">
-          <span className="photo-note">
-            PROFILE / 001
-            <br />
-            MORATUWA · LK
-          </span>
-
-          <div className="portrait">
-            <img
-              src="/images/Profile.jpeg"
-              alt="Sanuja Nimsith Alphonsus"
-            />
+        <Reveal className="home-hero-copy">
+          <p className="home-hello">Hi, I’m Sanuja.</p>
+          <h1>I build software and try to understand the business around it.</h1>
+          <p className="lead">
+            I’m studying Information Technology & Management at the University of Moratuwa.
+            I enjoy building web applications and backend systems, and I’m most interested in
+            work where the technology has to fit how a real organisation runs.
+          </p>
+          <div className="hero-actions">
+            <AppLink className="button" to="/projects/" navigate={navigate}>
+              See my projects <ArrowRight size={17} />
+            </AppLink>
+            <AppLink className="button button-quiet" to="/contact/" navigate={navigate}>
+              Get in touch
+            </AppLink>
           </div>
+          <p className="hero-social">
+            <a href={profile.github} target="_blank" rel="noreferrer">GitHub</a>
+            <a href={profile.linkedin} target="_blank" rel="noreferrer">LinkedIn</a>
+          </p>
+        </Reveal>
 
-          <span className="portrait-axis">
-            SNA / 2026
-          </span>
+        <Reveal className="home-portrait">
+          <img src="/images/Profile.jpeg" alt="Sanuja Nimsith Alphonsus" width="600" height="640" />
         </Reveal>
       </section>
 
-      <section className="about-home">
-        <div className="shell">
+      <section className="home-section home-background">
+        <div className="shell home-split">
           <Reveal>
-            <p className="eyebrow">
-              01 / About
+            <h2>Where I am now</h2>
+            <p className="section-lead">
+              A degree that mixes software with management, professional accounting studies
+              alongside it, and some time inside a bank.
             </p>
-
-            <div className="about-home-grid">
-              <h2>
-                Building software with a
-                <em> wider perspective.</em>
-              </h2>
-
-              <div>
-                <p>
-                  I’m studying IT & Management because building useful
-                  technology requires more than technical knowledge. I’m
-                  interested in how software fits into real organisations,
-                  processes, and the people who depend on it.
-                </p>
-
-                <p>
-                  Through university projects, I’ve been developing experience
-                  across software development, web applications, databases,
-                  and system design. I enjoy taking a problem, understanding
-                  the requirements behind it, and turning it into something
-                  practical and maintainable.
-                </p>
-
-                <span className="focus">
-                  Currently: building stronger foundations in software engineering
-                </span>
-              </div>
-            </div>
+            <AppLink className="text-link" to="/journey/" navigate={navigate}>
+              More about my journey <ArrowRight size={16} />
+            </AppLink>
           </Reveal>
+
+          <ul className="background-list">
+            {background.map((item) => (
+              <Reveal as="li" className="background-item" key={item.title}>
+                <h3>{item.title}</h3>
+                <p>{item.place}</p>
+                <span>{item.period}</span>
+              </Reveal>
+            ))}
+          </ul>
         </div>
       </section>
 
-      <section className="home-work shell">
-        <Reveal>
-          <div className="section-head">
-            <div>
-              <p className="eyebrow">
-                02 / Featured work
-              </p>
-
-              <h2>
-                Things I’ve built & helped build.
-              </h2>
-            </div>
-
-            <button onClick={() => navigate('/projects')}>
-              View all projects
-              <ArrowUpRight size={17} />
-            </button>
+      <section className="home-section shell">
+        <Reveal className="section-head">
+          <div>
+            <h2>Selected projects</h2>
+            <p className="section-lead">A few things I have built, and what I was responsible for.</p>
           </div>
+          <AppLink className="text-link" to="/projects/" navigate={navigate}>
+            All projects <ArrowRight size={16} />
+          </AppLink>
         </Reveal>
 
-        <div className="home-cases">
-          <ProjectTeaser
-            project={projects[0]}
-            index={0}
-            featured
-          />
-
-          <ProjectTeaser
-            project={projects[1]}
-            index={1}
-            featured
-          />
+        <div className="project-list project-list-home">
+          {projects.slice(0, 3).map((project, index) => (
+            <ProjectTeaser project={project} navigate={navigate} large={index === 0} key={project.slug} />
+          ))}
         </div>
       </section>
     </main>
-  );
+  )
 }

@@ -2,32 +2,20 @@ import { projects } from '../data/portfolio'
 import Reveal from '../components/Reveal'
 import ProjectTeaser from '../components/ProjectTeaser'
 
-export default function Projects() {
+export default function Projects({ navigate }) {
   return (
-    <main className="projects-page">
-      <div className="shell projects-intro">
-        <Reveal>
-          <p className="eyebrow cobalt">Selected projects / 02</p>
+    <main className="page shell">
+      <Reveal className="page-intro">
+        <h1 className="page-title">Projects</h1>
+        <p className="page-lead">
+          University and personal projects across web software, backend systems and hardware.
+          Each one has its own page explaining what it does and which parts I built.
+        </p>
+      </Reveal>
 
-          <h1 className="page-title">
-            Work made to <em>learn in public.</em>
-          </h1>
-
-          <p className="page-lead">
-            A selection of systems and interfaces built while developing
-            practical technical depth.
-          </p>
-        </Reveal>
-      </div>
-
-      <div className="shell all-cases">
-        {projects.slice(0, 4).map((project, index) => (
-          <ProjectTeaser
-            project={project}
-            index={index}
-            featured={index < 2}
-            key={project.title}
-          />
+      <div className="project-list">
+        {projects.map((project, index) => (
+          <ProjectTeaser project={project} navigate={navigate} large={index === 0} key={project.slug} />
         ))}
       </div>
     </main>

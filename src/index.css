@@ -1,35 +1,40 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap');
 
 @import "tailwindcss";
 
+/* Colour tokens. Calm, warm neutrals with one restrained accent. */
 :root {
-  --bg: #f5f6f8;
-  --ink: #191b20;
-  --muted: #686d78;
-  --line: #d6d9e0;
-  --surface: #e9ecf1;
-  --accent: #3148a8;
-  --accent-soft: #dce2ff;
-  --night: #171920;
+  --bg: #f7f6f3;
+  --surface: #efede8;
+  --card: #ffffff;
+  --ink: #1d1d1f;
+  --muted: #55565c;
+  --soft: #74757b;
+  --line: #dddbd5;
+  --accent: #2f4a9e;
+  --accent-soft: #e3e7f5;
+  --code-bg: #1f2128;
+  --shadow: 0 1px 2px rgb(20 20 30 / 0.04), 0 8px 24px -12px rgb(20 20 30 / 0.12);
+  color-scheme: light;
 }
 
 :root[data-theme='dark'] {
-  --bg: #121419;
-  --ink: #edf0f7;
-  --muted: #9ea5b5;
-  --line: #30343d;
-  --surface: #1c1f27;
-  --accent: #8394ff;
-  --accent-soft: #252e5d;
-  --night: #090a0d;
+  --bg: #141518;
+  --surface: #1b1c20;
+  --card: #1f2025;
+  --ink: #ececee;
+  --muted: #b3b4ba;
+  --soft: #9a9ba2;
+  --line: #2e3036;
+  --accent: #a9b8f5;
+  --accent-soft: #252c47;
+  --code-bg: #0f1013;
+  --shadow: 0 1px 2px rgb(0 0 0 / 0.3), 0 10px 30px -14px rgb(0 0 0 / 0.6);
+  color-scheme: dark;
 }
 
 * {
   box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
 }
 
 body {
@@ -37,7 +42,11 @@ body {
   min-width: 320px;
   background: var(--bg);
   color: var(--ink);
-  font-family: Manrope, system-ui, sans-serif;
+  font-family: Manrope, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  font-size: 17px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
 button,
@@ -56,12 +65,19 @@ a {
   text-decoration: none;
 }
 
-img {
+img,
+video {
   display: block;
   max-width: 100%;
 }
 
 ::selection {
   background: var(--accent);
-  color: white;
+  color: #fff;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 4px;
 }

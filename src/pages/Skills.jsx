@@ -1,61 +1,29 @@
-import {
-  skills,
-  professionalSkills,
-  additionalSkills,
-  skillPage,
-} from '../data/portfolio'
-
+import { skills, professionalSkills, additionalSkills, skillPage } from '../data/portfolio'
 import Reveal from '../components/Reveal'
 
-const groups = [
-  ...skills,
-  professionalSkills,
-  additionalSkills,
-]
+const groups = [...skills, professionalSkills, additionalSkills]
 
 export default function Skills() {
   return (
-    <main className="inner-page shell">
-      <Reveal>
-        <p className="eyebrow cobalt">
-          {skillPage.eyebrow}
-        </p>
-
-        <h1 className="page-title">
-          {skillPage.title}
-        </h1>
-
-        <p className="page-lead">
-          {skillPage.lead}
-        </p>
+    <main className="page shell">
+      <Reveal className="page-intro">
+        <h1 className="page-title">{skillPage.title}</h1>
+        <p className="page-lead">{skillPage.lead}</p>
       </Reveal>
 
-      <section className="skill-groups">
-        {groups.map((group, index) => (
-          <Reveal
-            className="skill-group"
-            key={group.category}
-          >
-            <span>
-              {String(index + 1).padStart(2, '0')}
-            </span>
-
+      <div className="skill-groups">
+        {groups.map((group) => (
+          <Reveal as="section" className="skill-group" key={group.category}>
             <div>
               <h2>{group.category}</h2>
-
               <p>{group.description}</p>
             </div>
-
-            <div className="skill-cards">
-              {group.items.map((item) => (
-                <span key={item}>
-                  {item}
-                </span>
-              ))}
-            </div>
+            <ul className="skill-list">
+              {group.items.map((item) => <li key={item}>{item}</li>)}
+            </ul>
           </Reveal>
         ))}
-      </section>
+      </div>
     </main>
   )
 }
