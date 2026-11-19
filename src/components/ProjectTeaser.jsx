@@ -1,50 +1,38 @@
-import { ArrowUpRight } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 import Reveal from './Reveal'
+import AppLink from './AppLink'
 
-export default function ProjectTeaser({
-  project,
-  index,
-  featured = false,
-}) {
+export default function ProjectTeaser({ project, navigate, large = false }) {
+  const to = `/projects/${project.slug}/`
+
   return (
-    <Reveal
-      className={`case ${featured ? 'case-featured' : ''} case-${index + 1}`}
-    >
-      <div className="case-art">
-        <span>0{index + 1}</span>
+    <Reveal className={`project-card${large ? ' project-card-large' : ''}`}>
+      <AppLink className="project-card-media" to={to} navigate={navigate} tabIndex={-1} aria-hidden="true">
+        {project.image ? (
+          <img
+            src={project.image}
+            alt=""
+            loading="lazy"
+            className={project.imageFit === 'contain' ? 'is-contain' : ''}
+            style={project.imagePosition ? { objectPosition: project.imagePosition } : undefined}
+          />
+        ) : (
+          <span className="project-card-initial">
+            {project.technologies.map((tech) => <span key={tech}>{tech}</span>)}
+          </span>
+        )}
+      </AppLink>
 
-        <i>
-          {index === 0
-            ? 'INTERLINK / SYSTEM'
-            : index === 1
-              ? 'IOT / RACE / SIGNAL'
-              : 'WEB / PLATFORM'}
-        </i>
-
-        <div className="case-shape" />
-      </div>
-
-      <div className="case-copy">
-        <p className="eyebrow">{project.tag}</p>
-
-        <h3>{project.title}</h3>
-
-        <p>{project.description}</p>
-
-        <div className="tags">
-          {project.technologies.map((tech) => (
-            <span key={tech}>{tech}</span>
-          ))}
-        </div>
-
-        <a
-          href={project.github}
-          target="_blank"
-          rel="noreferrer"
-        >
-          View project
-          <ArrowUpRight size={16} />
-        </a>
+      <div className="project-card-body">
+        <p className="project-card-meta">{project.meta}</p>
+        <h3>
+          <AppLink to={to} navigate={navigate}>{project.title}</AppLink>
+        </h3>
+        <p>{project.summary}</p>
+        <p className="project-card-tech">{project.technologies.join(' · ')}</p>
+        <AppLink className="project-card-link" to={to} navigate={navigate}>
+          Read the case study <ArrowRight size={16} />
+        </AppLink>
       </div>
     </Reveal>
   )
