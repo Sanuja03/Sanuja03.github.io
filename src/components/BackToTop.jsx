@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { ArrowUp } from 'lucide-react'
+import { scrollToTop } from '../lib/smoothScroll'
 
 export default function BackToTop() {
   const [progress, setProgress] = useState(0)
@@ -59,12 +60,7 @@ export default function BackToTop() {
     }
   }, [])
 
-  const goToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth',
-    })
-  }
+  const goToTop = () => scrollToTop()
 
   const circumference = 2 * Math.PI * 21
   const offset =
