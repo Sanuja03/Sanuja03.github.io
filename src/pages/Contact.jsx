@@ -2,7 +2,7 @@ import { useState } from 'react'
 
 import { ArrowUpRight, Check, Send } from 'lucide-react'
 
-import { profile } from '../data/portfolio'
+import { contact, profile } from '../data/portfolio'
 
 import Reveal from '../components/Reveal'
 
@@ -58,38 +58,30 @@ export default function Contact() {
   }
 
   return (
-    <main className="contact-page shell">
-      <Reveal>
-        <p className="eyebrow cobalt">Contact / 04</p>
-
-        <h1 className="page-title">
-          Let’s begin with a <em>good conversation.</em>
-        </h1>
+    <main className="page shell">
+      <Reveal className="page-intro">
+        <h1 className="page-title">{contact.title}</h1>
+        <p className="page-lead">{contact.description}</p>
       </Reveal>
 
-      <div className="contact-page-grid">
-        <Reveal>
-          <p className="contact-intro">
-            I’m open to internship opportunities and conversations around
-            software, IT, and useful ideas.
-          </p>
+      <div className="contact-grid">
+        <Reveal className="contact-details">
+          <p>The quickest way to reach me is by email.</p>
 
-          <a className="big-email" href={`mailto:${profile.email}`}>
+          <a className="contact-email" href={`mailto:${profile.email}`}>
             {profile.email}
-            <ArrowUpRight size={20} />
+            <ArrowUpRight size={18} />
           </a>
 
-          <div className="contact-list">
-            <a href={profile.github} target="_blank" rel="noreferrer">
-              GitHub ↗
-            </a>
-
-            <a href={profile.linkedin} target="_blank" rel="noreferrer">
-              LinkedIn ↗
-            </a>
-
-            <span>{profile.location}</span>
-          </div>
+          <ul className="contact-list">
+            <li>
+              <a href={profile.linkedin} target="_blank" rel="noreferrer">LinkedIn</a>
+            </li>
+            <li>
+              <a href={profile.github} target="_blank" rel="noreferrer">GitHub</a>
+            </li>
+            <li>{profile.location}</li>
+          </ul>
         </Reveal>
 
         <Reveal>
