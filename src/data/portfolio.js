@@ -244,7 +244,7 @@ export const projects = [
       kind: 'University group project',
       facts: [
         ['Module', 'Enterprise Application Development'],
-        ['Team', 'Five members'],
+        ['Team', 'Ten members'],
         ['When', 'Nov 2026 – present'],
         ['Status', 'In development'],
       ],
@@ -278,7 +278,7 @@ export const projects = [
         ['Tests', 'Tests for the pricing strategies and the estimate API, and security tests that check admin endpoints respond correctly to admins, customers and anonymous users.'],
       ],
       challenges: [
-        ['One environment for everyone', 'Five people need the same database and services. Docker Compose with per-person environment files gave everyone the same setup without sharing credentials.'],
+        ['One environment for everyone', 'Ten people need the same database and services. Docker Compose with per-person environment files gave everyone the same setup without sharing credentials.'],
         ['Pricing that can change', 'Delivery fees depend on zones and weight. Using separate pricing strategies kept the rules easy to test and easy to change.'],
         ['Admin edits versus seed data', 'Seed data must not overwrite changes made by an administrator, so the seeds only insert rows that are not already there.'],
       ],
@@ -412,7 +412,7 @@ export function getProject(slug) {
 export const background = [
   {
     title: 'BSc (Hons) in Information Technology & Management',
-    place: 'University of Moratuwa',
+    place: 'University of Moratuwa · CGPA 3.56 / 4.00',
     period: '2024 – present',
   },
   {
@@ -423,7 +423,7 @@ export const background = [
   {
     title: 'Corporate Banking Intern',
     place: 'Seylan Bank PLC',
-    period: 'Internship',
+    period: 'Mar – Aug 2023',
   },
 ]
 
@@ -437,7 +437,7 @@ export const journey = {
         {
           period: '2024 – present',
           title: 'BSc (Hons) in Information Technology & Management',
-          place: 'University of Moratuwa',
+          place: 'University of Moratuwa · CGPA 3.56 / 4.00',
           detail:
             'My degree covers programming, software engineering, databases, web development and systems, alongside management subjects. Most of what I have learned in practice has come from group projects: a sensor-driven racing game in my first year, a recruitment platform for a real client in my second, and now a courier management system.',
         },
@@ -454,7 +454,7 @@ export const journey = {
       title: 'Experience',
       entries: [
         {
-          period: 'Internship',
+          period: 'Mar – Aug 2023',
           title: 'Corporate Banking Intern',
           place: 'Seylan Bank PLC',
           detail:
